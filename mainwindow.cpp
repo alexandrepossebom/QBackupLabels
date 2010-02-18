@@ -4,6 +4,8 @@
 #include <QPrinter>
 #include <QDate>
 #include <QPrintDialog>
+#include <QDesktopWidget>
+#include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -16,6 +18,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->spinBoxYear->setValue(day.year());
 
     ui->buttonBox->setFocus();
+
+
+    QPoint center = qApp->desktop()->screenGeometry(this).center();
+
+    QRect r = rect();
+    r.moveCenter(center);
+    move(r.topLeft());
+
 }
 
 void MainWindow::printLabel()
